@@ -1,0 +1,43 @@
+.forecast {
+  padding: 20px;
+  background-color: #f0f0f0;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.forecast h3 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.forecast-cards {
+  display: flex;
+  justify-content: space-between;
+}
+
+.forecast-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 18%;
+  text-align: center;
+}
+
+.forecast-card .date {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.forecast-card .temperature {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.forecast-card .weather-description {
+  font-size: 1rem;
+  color: #888;
+}

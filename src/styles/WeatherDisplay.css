@@ -1,0 +1,29 @@
+.weather-display {
+    margin-top: 20px;
+  }
+  
+  .weather-display h2 {
+    font-size: 2rem;
+  }
+  
+  .weather-display h3 {
+    font-size: 1.5rem;
+    margin: 10px 0;
+  }
+  
+  .weather-display p {
+    font-size: 1rem;
+  }
+  
+  .weather-display button {
+    padding: 10px 20px;
+    background-color: #2ecc71;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .weather-display button:hover {
+    background-color: #27ae60;
+  }
+  
