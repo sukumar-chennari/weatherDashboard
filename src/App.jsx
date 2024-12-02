@@ -28,16 +28,14 @@ const App = () => {
         time: new Date().toLocaleTimeString(),
       });
 
-      // Fetch 5-day forecast data
       const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
       const forecastResponse = await axios.get(forecastUrl);
 
-      // Filter the forecast to get data only for the next 5 days
       const fiveDayForecast = forecastResponse.data.list.filter((entry, index) => {
-        return index % 8 === 0; // Each 8th entry corresponds to a day's forecast at the same time each day
+        return index % 8 === 0;
       });
 
-      setForecast(fiveDayForecast); // Store the 5-day forecast
+      setForecast(fiveDayForecast);
 
     } catch (error) {
       console.error("Error fetching weather:", error);
@@ -58,34 +56,12 @@ const App = () => {
     toast.success(`${city} removed from favorites!`);
   };
 
-  // Determine the background image based on temperature
-  const getBackgroundImage = () => {
-    if (!weather) return {}; // Return empty object when there's no weather data
-
-    let backgroundImage = "";
-
-    if (weather.temp < 0) {
-      backgroundImage = "url('./public/images/cold.jpg')";
-    } else if (weather.temp >= 0 && weather.temp < 20) {
-      backgroundImage = "url('/images/mild.jpg')";
-    } else {
-      backgroundImage = "url('/images/hot.jpg')";
-    }
-
-    return {
-      backgroundImage,
-      backgroundSize: "cover",
-      backgroundPosition: "center",
-      minHeight: "100vh",
-    };
-  };
-
   return (
-    <div className="app-container" style={getBackgroundImage()}>
+    <div className="app-container">
       <Header onSearch={fetchWeather} />
       <WeatherDisplay weather={weather} onAddFavorite={addFavorite} />
       <Favorites favorites={favorites} onRemove={removeFavorite} />
-      <Forecast forecast={forecast} />
+      <Forecast forecast={forecast} weather={weather} />
       <ToastContainer />
     </div>
   );

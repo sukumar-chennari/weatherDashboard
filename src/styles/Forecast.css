@@ -41,3 +41,33 @@
   font-size: 1rem;
   color: #888;
 }
+
+.forecast-container {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.forecast-day {
+  width: 150px;
+  text-align: center;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.cold-bg {
+  background: url("../images/cold.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.mild-bg {
+  background: url("../images/mild.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.hot-bg {
+  background: url("../images/hot.jpg") no-repeat center center;
+  background-size: cover;
+}
+
