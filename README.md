@@ -20,8 +20,8 @@ Setup Instructions:
 Follow these steps to set up and run the application:
 
 Step 1: Clone the Repository
-        git clone https://github.com/sukumar-chennari/weatherDashboard.git
-        cd weatherDashboard
+        1. git clone https://github.com/sukumar-chennari/weatherDashboard.git
+        2. cd weatherDashboard
 
 Step 2: Install Dependencies
 Run the following command in the terminal to install all required dependencies:
