@@ -9,6 +9,8 @@ Features:
 -> Add and remove cities from the favorites list.
 -> Dynamically styled UI based on temperature (hot, mild, cold backgrounds).
 
+Live Link: https://effortless-wisp-1d6faa.netlify.app/
+
 Prerequisites
 -> Ensure you have the following installed on your machine:
     Node.js (16 or higher)

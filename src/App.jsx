@@ -181,7 +181,7 @@ const App = () => {
   };
 
   return (
-    <div className={`app-container ${bgClass}`}>
+    <div className={`app-container`}>
       <Header onSearch={fetchWeather} />
       <WeatherDisplay weather={weather} onAddFavorite={addFavorite} />
       <Favorites
