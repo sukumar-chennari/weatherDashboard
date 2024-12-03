@@ -16,13 +16,24 @@ const Forecast = ({ forecast }) => {
 
   return (
     <div className="forecast-container">
-      {forecast.map((day, index) => (
-        <div key={index} className={`forecast-day ${getBackgroundClass(day.main.temp)}`}>
-          <p>{new Date(day.dt_txt).toLocaleDateString()}</p>
-          <p>Temp: {day.main.temp}°C</p>
-          <p>{day.weather[0].description}</p>
-        </div>
-      ))}
+      {forecast.map((day, index) => {
+        // Check if the required properties exist before rendering
+        if (!day.main || !day.main.temp || !day.weather || !day.weather[0]) {
+          return (
+            <div key={index} className="forecast-day error">
+              <p>Invalid data</p>
+            </div>
+          );
+        }
+
+        return (
+          <div key={index} className={`forecast-day ${getBackgroundClass(day.main.temp)}`}>
+            <p>{new Date(day.dt_txt).toLocaleDateString()}</p>
+            <p>Temp: {day.main.temp}°C</p>
+            <p>{day.weather[0].description}</p>
+          </div>
+        );
+      })}
     </div>
   );
 };

@@ -1,52 +1,60 @@
 .weather-display {
-    margin-top: 20px;
-  }
-  
-  .weather-display h2 {
-    font-size: 2rem;
-  }
-  
-  .weather-display h3 {
-    font-size: 1.5rem;
-    margin: 10px 0;
-  }
-  
-  .weather-display p {
-    font-size: 1rem;
-  }
-  
-  .weather-display button {
-    padding: 10px 20px;
-    background-color: #2ecc71;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .weather-display button:hover {
-    background-color: #27ae60;
-  }
-  
-  .weather-display {
-    padding: 20px;
-    text-align: center;
-    border-radius: 10px;
-    margin: 20px;
-  }
-  
-  .cold-bg {
-    background: url("/images/cold.jpg") no-repeat center center;
-    background-size: cover;
-  }
-  
-  .mild-bg {
-    background: url("/images/mild.jpg") no-repeat center center;
-    background-size: cover;
-  }
-  
-  .hot-bg {
-    background: url("/images/hot.jpg") no-repeat center center;
-    background-size: cover;
-  }
-  
-  
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 10px;
+  color: white;
+  background-color: #34495e; /* Fallback for unsupported browsers */
+  transition: transform 0.3s ease;
+}
+
+/*  */
+
+.weather-display:hover {
+  transform: scale(1.05);
+}
+
+.weather-display h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+}
+
+.weather-display h3 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+}
+
+.weather-display p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.weather-display button {
+  padding: 10px 20px;
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.weather-display button:hover {
+  background-color: #27ae60;
+}
+
+.cold-bg {
+  background: url("/images/cold.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.mild-bg {
+  background: url("/images/mild.jpg") no-repeat center center;
+  background-size: cover;
+}
+
+.hot-bg {
+  background: url("/images/hot.jpg") no-repeat center center;
+  background-size: cover;
+}

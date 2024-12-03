@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Favorites.css";
 
-const Favorites = ({ favorites, onRemove }) => {
+const Favorites = ({ favorites, onRemove, onClick }) => {
   return (
     <div className="favorites">
       <h3>Your Favorite Cities</h3>
@@ -11,7 +11,9 @@ const Favorites = ({ favorites, onRemove }) => {
         <ul>
           {favorites.map((city, index) => (
             <li key={index}>
-              {city}
+              <span onClick={() => onClick(city)} className="favorite-city">
+                {city}
+              </span>
               <button onClick={() => onRemove(city)}>Remove</button>
             </li>
           ))}

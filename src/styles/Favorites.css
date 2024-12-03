@@ -31,3 +31,21 @@
 .favorites button:hover {
   background-color: #c0392b;
 }
+
+.favorite-city {
+  cursor: pointer;
+  color:  #6c757d;
+  font-weight: bold;
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.favorite-city:hover {
+  color:  #495057;
+  text-decoration: none; 
+}
+
+
+button {
+  margin-left: 10px;
+  cursor: pointer;
+}
