@@ -17,7 +17,7 @@ const Forecast = ({ forecast }) => {
   return (
     <div className="forecast-container">
       {forecast.map((day, index) => {
-        // Check if the required properties exist before rendering
+        
         if (!day.main || !day.main.temp || !day.weather || !day.weather[0]) {
           return (
             <div key={index} className="forecast-day error">
