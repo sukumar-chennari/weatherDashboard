@@ -1,12 +1,3 @@
 {
-  "favorites": [
-    {
-      "id": "4122",
-      "name": "Anantapur"
-    },
-    {
-      "id": "f37b",
-      "name": "Hyderabad"
-    }
-  ]
+  "favorites": []
 }

@@ -42,12 +42,28 @@ const App = () => {
       }
 
       if (forecastResponse.status === 200) {
-        const forecastData = forecastResponse.data.list.slice(0, 5).map((item) => ({
-          main: item.main,
-          dt_txt: item.dt_txt,
-          weather: item.weather,
-        }));
-        setForecast(forecastData);
+        const forecastData = forecastResponse.data.list;
+
+        // Filter forecast to include one entry per day
+        const filteredForecast = [];
+        const seenDates = new Set();
+
+        forecastData.forEach((item) => {
+          const date = item.dt_txt.split(" ")[0]; // Extract date (YYYY-MM-DD)
+          const time = item.dt_txt.split(" ")[1]; // Extract time (HH:mm:ss)
+
+          // Pick midday data (12:00:00) or ensure only one entry per day
+          if (!seenDates.has(date) && time.startsWith("12")) {
+            filteredForecast.push({
+              main: item.main,
+              dt_txt: item.dt_txt,
+              weather: item.weather,
+            });
+            seenDates.add(date);
+          }
+        });
+
+        setForecast(filteredForecast);
       }
     } catch (error) {
       console.error("Error fetching weather data:", error);
@@ -83,12 +99,28 @@ const App = () => {
       }
 
       if (forecastResponse.status === 200) {
-        const forecastData = forecastResponse.data.list.slice(0, 5).map((item) => ({
-          main: item.main,
-          dt_txt: item.dt_txt,
-          weather: item.weather,
-        }));
-        setForecast(forecastData);
+        const forecastData = forecastResponse.data.list;
+
+        // Filter forecast to include one entry per day
+        const filteredForecast = [];
+        const seenDates = new Set();
+
+        forecastData.forEach((item) => {
+          const date = item.dt_txt.split(" ")[0]; // Extract date (YYYY-MM-DD)
+          const time = item.dt_txt.split(" ")[1]; // Extract time (HH:mm:ss)
+
+          // Pick midday data (12:00:00) or ensure only one entry per day
+          if (!seenDates.has(date) && time.startsWith("12")) {
+            filteredForecast.push({
+              main: item.main,
+              dt_txt: item.dt_txt,
+              weather: item.weather,
+            });
+            seenDates.add(date);
+          }
+        });
+
+        setForecast(filteredForecast);
       }
     } catch (error) {
       console.error("Error fetching weather data by location:", error);
@@ -149,7 +181,7 @@ const App = () => {
   };
 
   return (
-    <div className={`app-container `}>
+    <div className={`app-container ${bgClass}`}>
       <Header onSearch={fetchWeather} />
       <WeatherDisplay weather={weather} onAddFavorite={addFavorite} />
       <Favorites
