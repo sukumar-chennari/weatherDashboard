@@ -24,8 +24,7 @@ Step 1: Clone the Repository
         cd weatherDashboard
 
 Step 2: Install Dependencies
-
-        Run the following command in the terminal to install all required dependencies:
+Run the following command in the terminal to install all required dependencies:
         npm install
 
 Step 3: Obtain an OpenWeatherMap API Key
@@ -48,7 +47,7 @@ Step 4: Set Up the JSON Server
         }  
 
 Step 5: Start the React Application
-        Run the following command to start the application:
+Run the following command to start the application:
         npm run dev
 
 Usage:
