@@ -1,4 +1,4 @@
-/* Search.css */
+
 .search {
     display: flex;
     justify-content: center;
@@ -27,4 +27,45 @@
 
 .search button:hover {
     background-color: #2980b9;
+}
+
+
+@media (max-width: 768px) {
+    .search {
+        flex-direction: column; 
+        gap: 5px; 
+    }
+
+    .search input {
+        width: 80%;
+        padding: 12px; 
+        font-size: 1.1rem;
+    }
+
+    .search button {
+        width: 80%; 
+        padding: 12px 20px; 
+        font-size: 1.1rem; 
+    }
+}
+
+
+@media (max-width: 480px) {
+    .search {
+        flex-direction: column;
+        gap: 5px; 
+        margin-bottom: 15px; 
+    }
+
+    .search input {
+        width: 100%; 
+        padding: 12px; 
+        font-size: 1.2rem; 
+    }
+
+    .search button {
+        width: 100%; 
+        padding: 12px 20px; 
+        font-size: 1.2rem; 
+    }
 }

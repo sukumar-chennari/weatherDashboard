@@ -14,6 +14,7 @@
 .forecast-cards {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap; 
 }
 
 .forecast-card {
@@ -23,6 +24,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   width: 18%;
   text-align: center;
+  margin-bottom: 20px; 
 }
 
 .forecast-card .date {
@@ -46,6 +48,7 @@
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
+  flex-wrap: wrap; 
 }
 
 .forecast-day {
@@ -71,3 +74,53 @@
   background-size: cover;
 }
 
+
+@media (max-width: 768px) {
+  .forecast h3 {
+    font-size: 1.5rem;
+  }
+
+  .forecast-cards {
+    justify-content: space-around; 
+  }
+
+  .forecast-card {
+    width: 45%; 
+    margin-bottom: 20px;
+  }
+
+  .forecast-container {
+    justify-content: space-between;
+  }
+
+  .forecast-day {
+    width: 120px; 
+    padding: 12px;
+  }
+}
+
+/* For mobile devices */
+@media (max-width: 480px) {
+  .forecast h3 {
+    font-size: 1.2rem;
+  }
+
+  .forecast-cards {
+    flex-direction: column;
+    align-items: center; 
+  }
+
+  .forecast-card {
+    width: 90%; 
+    margin-bottom: 15px;
+  }
+
+  .forecast-container {
+    justify-content: center; 
+  }
+
+  .forecast-day {
+    width: 100px; 
+    padding: 10px;
+  }
+}

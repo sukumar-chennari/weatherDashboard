@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: center;
   background-color: whitesmoke;
+  padding: 20px;
 }
 
 h1 {
@@ -13,39 +14,19 @@ h1 {
   color: #333;
 }
 
-.search-bar input {
+.search-bar input,
+.search-bar button {
   padding: 10px;
   font-size: 1rem;
   margin-right: 10px;
+}
+
+.search-bar input {
   width: 200px;
 }
 
 .search-bar button {
   padding: 10px 20px;
-  font-size: 1rem;
-  background-color: #3498db;
-  color: white;
-  border: none;
-  cursor: pointer;
-}
-
-.search-bar button:hover {
-  background-color: #2980b9;
-}
-
-/*  */
-
-
-.search-bar input {
-  padding: 10px;
-  font-size: 1rem;
-  margin-right: 10px;
-  width: 200px;
-}
-
-.search-bar button {
-  padding: 10px 20px;
-  font-size: 1rem;
   background-color: #3498db;
   color: white;
   border: none;
@@ -57,3 +38,41 @@ h1 {
 }
 
 
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .search-bar input {
+    width: 150px;
+    font-size: 0.9rem;
+  }
+
+  .search-bar button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .search-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .search-bar input,
+  .search-bar button {
+    margin: 5px 0;
+    width: 90%;
+  }
+
+  .search-bar button {
+    padding: 10px;
+    font-size: 1rem;
+  }
+}

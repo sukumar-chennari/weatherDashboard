@@ -44,8 +44,55 @@
   text-decoration: none; 
 }
 
-
 button {
   margin-left: 10px;
   cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  .favorites h3 {
+    font-size: 1.25rem;
+  }
+
+  .favorites li {
+    padding: 8px;
+    font-size: 0.9rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .favorites button {
+    padding: 4px 8px;
+    font-size: 0.9rem;
+  }
+
+  .favorite-city {
+    font-size: 0.9rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .favorites h3 {
+    font-size: 1rem;
+  }
+
+  .favorites li {
+    padding: 6px;
+    font-size: 0.8rem;
+  }
+
+  .favorites button {
+    padding: 4px 8px;
+    font-size: 0.8rem;
+  }
+
+  .favorite-city {
+    font-size: 0.8rem;
+  }
+
+  .favorites ul {
+    padding: 0 10px;
+  }
 }

@@ -5,11 +5,9 @@
   text-align: center;
   border-radius: 10px;
   color: white;
-  background-color: #34495e; /* Fallback for unsupported browsers */
+  background-color: #34495e; 
   transition: transform 0.3s ease;
 }
-
-/*  */
 
 .weather-display:hover {
   transform: scale(1.05);
@@ -57,4 +55,54 @@
 .hot-bg {
   background: url("/images/hot.jpg") no-repeat center center;
   background-size: cover;
+}
+
+
+@media (max-width: 768px) {
+  .weather-display {
+    max-width: 90%; 
+    padding: 15px; 
+  }
+
+  .weather-display h2 {
+    font-size: 1.8rem; 
+  }
+
+  .weather-display h3 {
+    font-size: 1.3rem; 
+  }
+
+  .weather-display p {
+    font-size: 0.9rem; 
+  }
+
+  .weather-display button {
+    padding: 8px 15px; 
+    font-size: 1rem; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .weather-display {
+    max-width: 95%;
+    padding: 10px; 
+  }
+
+  .weather-display h2 {
+    font-size: 1.6rem; 
+  }
+
+  .weather-display h3 {
+    font-size: 1.2rem; 
+  }
+
+  .weather-display p {
+    font-size: 0.8rem; 
+  }
+
+  .weather-display button {
+    padding: 8px 15px; 
+    font-size: 1rem; 
+  }
 }

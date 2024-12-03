@@ -66,7 +66,7 @@ const App = () => {
         setForecast(filteredForecast);
       }
     } catch (error) {
-      console.error("Error fetching weather data:", error);
+      
       toast.error("Failed to fetch weather data!");
     }
   };
@@ -123,7 +123,7 @@ const App = () => {
         setForecast(filteredForecast);
       }
     } catch (error) {
-      console.error("Error fetching weather data by location:", error);
+      
       toast.error("Failed to fetch weather data!");
     }
   };
@@ -138,7 +138,7 @@ const App = () => {
           fetchWeatherByLocation(latitude, longitude);
         },
         (error) => {
-          console.error("Error getting geolocation:", error);
+          
           toast.error("Failed to get location!");
         }
       );
@@ -157,28 +157,55 @@ const App = () => {
         setFavorites(response.data.map((item) => item.name));
       }
     } catch (error) {
-      console.error("Error fetching favorites:", error);
+      
     }
   };
 
   const addFavorite = async (city) => {
-    if (!favorites.includes(city)) {
-      setFavorites([...favorites, city]);
-      toast.success(`${city} added to favorites!`);
-      await axios.post("http://localhost:5000/favorites", { name: city });
-    } else {
-      toast.error(`${city} is already in your favorites!`);
+    try {
+      // Check if the city is already in the database
+      const response = await axios.get(`http://localhost:5000/favorites?name=${city}`);
+      if (response.data.length === 0) {
+        // Add the city to the database
+        const newFavorite = { name: city };
+        await axios.post("http://localhost:5000/favorites", newFavorite);
+  
+        // Update the state
+        setFavorites([...favorites, city]);
+        toast.success(`${city} added to favorites!`);
+      } else {
+        toast.error(`${city} is already in your favorites!`);
+      }
+    } catch (error) {
+      
+      toast.error(`Failed to add "${city}" to favorites.`);
     }
   };
-
   const removeFavorite = async (city) => {
-    setFavorites(favorites.filter((fav) => fav !== city));
-    toast.success(`${city} removed from favorites!`);
-    const favorite = await axios.get(`http://localhost:5000/favorites?name=${city}`);
-    if (favorite.data.length) {
-      await axios.delete(`http://localhost:5000/favorites/${favorite.data[0].id}`);
+    try {
+      // Fetch the favorite by city name
+      const response = await axios.get(`http://localhost:5000/favorites?name=${city}`);
+  
+      // Check if the city exists in the database
+      if (response.data.length > 0) {
+        const favoriteId = response.data[0].id; // Get the ID of the favorite
+  
+        // Delete the favorite by its ID
+        await axios.delete(`http://localhost:5000/favorites/${favoriteId}`);
+        toast.success(`${city} removed from favorites!`);
+  
+        // Update the state
+        setFavorites(favorites.filter((fav) => fav !== city));
+      } else {
+        toast.error(`City "${city}" not found in favorites.`);
+      }
+    } catch (error) {
+      
+      toast.error(`Failed to remove "${city}" from favorites.`);
     }
   };
+  
+  
 
   return (
     <div className={`app-container`}>
