@@ -14,18 +14,19 @@ const App = () => {
   const [favorites, setFavorites] = useState([]);
   const [bgClass, setBgClass] = useState("");
 
+  // Function to fetch weather data by city name
   const fetchWeather = async (city) => {
     const apiKey = "3fbfee0add6f67c23b4e7b25fd590df6";
     const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
     const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
-  
+
     try {
       const weatherResponse = await axios.get(weatherUrl);
       const forecastResponse = await axios.get(forecastUrl);
-  
+
       if (weatherResponse.status === 200) {
         const weatherData = weatherResponse.data;
-  
+
         setWeather({
           temp: weatherData.main.temp,
           city: weatherData.name,
@@ -33,33 +34,90 @@ const App = () => {
           description: weatherData.weather[0].description,
           time: new Date().toLocaleTimeString(),
         });
-  
+
         // Set background class based on temperature
         if (weatherData.main.temp < 0) setBgClass("cold-bg");
         else if (weatherData.main.temp < 20) setBgClass("mild-bg");
         else setBgClass("hot-bg");
       }
-  
+
       if (forecastResponse.status === 200) {
-        const forecastData = forecastResponse.data.list;
-  
-        // Filter data to include only one entry per day (noon forecast)
-        const filteredForecast = forecastData.filter((item) =>
-          item.dt_txt.includes("12:00:00") // Using noon forecast data
-        );
-  
-        setForecast(filteredForecast.map((item) => ({
+        const forecastData = forecastResponse.data.list.slice(0, 5).map((item) => ({
           main: item.main,
           dt_txt: item.dt_txt,
           weather: item.weather,
-        })));
+        }));
+        setForecast(forecastData);
       }
     } catch (error) {
       console.error("Error fetching weather data:", error);
       toast.error("Failed to fetch weather data!");
     }
   };
-  
+
+  // Function to fetch weather data based on the user's geolocation
+  const fetchWeatherByLocation = async (lat, lon) => {
+    const apiKey = "3fbfee0add6f67c23b4e7b25fd590df6";
+    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+
+    try {
+      const weatherResponse = await axios.get(weatherUrl);
+      const forecastResponse = await axios.get(forecastUrl);
+
+      if (weatherResponse.status === 200) {
+        const weatherData = weatherResponse.data;
+
+        setWeather({
+          temp: weatherData.main.temp,
+          city: weatherData.name,
+          country: weatherData.sys.country,
+          description: weatherData.weather[0].description,
+          time: new Date().toLocaleTimeString(),
+        });
+
+        // Set background class based on temperature
+        if (weatherData.main.temp < 0) setBgClass("cold-bg");
+        else if (weatherData.main.temp < 20) setBgClass("mild-bg");
+        else setBgClass("hot-bg");
+      }
+
+      if (forecastResponse.status === 200) {
+        const forecastData = forecastResponse.data.list.slice(0, 5).map((item) => ({
+          main: item.main,
+          dt_txt: item.dt_txt,
+          weather: item.weather,
+        }));
+        setForecast(forecastData);
+      }
+    } catch (error) {
+      console.error("Error fetching weather data by location:", error);
+      toast.error("Failed to fetch weather data!");
+    }
+  };
+
+  // Get user's geolocation on component mount
+  useEffect(() => {
+    // Check if geolocation is available
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          fetchWeatherByLocation(latitude, longitude);
+        },
+        (error) => {
+          console.error("Error getting geolocation:", error);
+          toast.error("Failed to get location!");
+        }
+      );
+    } else {
+      toast.error("Geolocation is not supported by this browser.");
+    }
+
+    fetchFavorites();
+  }, []);
+
+  // Fetch favorites from local API
   const fetchFavorites = async () => {
     try {
       const response = await axios.get("http://localhost:5000/favorites");
@@ -89,10 +147,6 @@ const App = () => {
       await axios.delete(`http://localhost:5000/favorites/${favorite.data[0].id}`);
     }
   };
-
-  useEffect(() => {
-    fetchFavorites();
-  }, []);
 
   return (
     <div className={`app-container `}>
